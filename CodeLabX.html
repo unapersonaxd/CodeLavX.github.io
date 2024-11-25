@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLabX</title>
+    <style>
+        /* Modo oscuro para el playground */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #121212;
+            /* Fondo negro */
+            color: #f4f4f9;
+            /* Texto claro */
+        }
+        
+        #playground {
+            display: flex;
+            width: 100%;
+            height: 90vh;
+        }
+        
+        #editors {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: #1e1e1e;
+            /* Fondo oscuro para editores */
+            border-right: 2px solid #444;
+        }
+        
+        .editor {
+            flex: 1;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor h3 {
+            margin: 0 0 5px 0;
+            color: #f4f4f9;
+            font-size: 16px;
+        }
+        /* Estilo de los textareas */
+        
+        textarea {
+            flex: 1;
+            resize: none;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #f4f4f9;
+            background-color: #2e2e2e;
+        }
+        /* Colores personalizados para cada tipo de código */
+        
+        #html-code {
+            border-left: 5px solid #e34c26;
+            /* Naranja para HTML */
+        }
+        
+        #css-code {
+            border-left: 5px solid #2965f1;
+            /* Azul para CSS */
+        }
+        
+        #js-code {
+            border-left: 5px solid #f7df1e;
+            /* Amarillo para JavaScript */
+        }
+        /* Área de salida (vista previa) */
+        
+        #output {
+            flex: 2;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background-color: #1e1e1e;
+            border-left: 2px solid #444;
+        }
+        
+        #output h3 {
+            color: #f4f4f9;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        #preview {
+            flex: 1;
+            border: none;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="playground">
+        <div id="editors">
+            <div class="editor">
+                <h3>HTML</h3>
+                <textarea id="html-code" placeholder="Escribe HTML aquí..."></textarea>
+            </div>
+            <div class="editor">
+                <h3>CSS</h3>
+                <textarea id="css-code" placeholder="Escribe CSS aquí..."></textarea>
+            </div>
+            <div class="editor">
+                <h3>JavaScript</h3>
+                <textarea id="js-code" placeholder="Escribe JavaScript aquí..."></textarea>
+            </div>
+        </div>
+        <div id="output">
+            <h3>Vista previa</h3>
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+    <script>
+        // JavaScript para actualizar la vista previa en tiempo real
+        const htmlEditor = document.getElementById('html-code');
+        const cssEditor = document.getElementById('css-code');
+        const jsEditor = document.getElementById('js-code');
+        const preview = document.getElementById('preview');
+
+        function updatePreview() {
+            const html = htmlEditor.value;
+            const css = `<style>${cssEditor.value}</style>`;
+            const js = `<script>${jsEditor.value}<\/script>`;
+            const content = `${html}${css}${js}`;
+
+            const previewDocument = preview.contentDocument || preview.contentWindow.document;
+            previewDocument.open();
+            previewDocument.write(content);
+            previewDocument.close();
+        }
+
+        htmlEditor.addEventListener('input', updatePreview);
+        cssEditor.addEventListener('input', updatePreview);
+        jsEditor.addEventListener('input', updatePreview);
+
+        updatePreview(); // Inicializar vista previa
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) [Año] [Tu nombre o nombre del proyecto]
+Copyright (c) [2024] [Ethan Misak]
 
 Se concede permiso, de forma gratuita, a cualquier persona que obtenga una copia de este software y los archivos asociados, para utilizarlo sin restricciones, incluyendo los derechos para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del Software, y para permitir a las personas a quienes se les proporcione el Software hacerlo, con sujeción a las siguientes condiciones:
 
